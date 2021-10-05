@@ -7,11 +7,6 @@ import CheckoutWrapper from './components/CheckoutWrapper';
 import CheckoutForm from './components/CheckoutForm';
 
 
-
-
-
-
-
 ReactDOM.render(
     <Router>
        <Switch>
