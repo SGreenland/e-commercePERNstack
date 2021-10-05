@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import useStore from "../Store";
 import { cartStore } from "../Store";
-
 
 export default function CheckoutForm({ total }) {
   const stripe = useStripe();
@@ -14,20 +13,13 @@ export default function CheckoutForm({ total }) {
   const [clientSecret, setClientSecret] = useState("");
   const [email, setEmail] = useState(sessionStorage.getItem("userEmail"));
   const isValidUser = useStore.getState().isValidUser;
-  const btnStyle = { width: "100%", borderRadius: "4px", margin: "5px", };
+  const btnStyle = { width: "100%", borderRadius: "4px", margin: "5px" };
   var progVal = document.getElementsByTagName("progress")[0];
   var alertBox = document.getElementById("alertBox");
   const cartItems = cartStore((state) => state.cartItems);
 
- 
-
-
- 
-  
-  
-
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads 
+    // Create PaymentIntent as soon as the page loads
 
     const getKey = async () => {
       try {
@@ -49,28 +41,28 @@ export default function CheckoutForm({ total }) {
       }
     };
     getKey();
-  },[]);
+  }, []);
 
   function progressBar() {
     progVal.style.display = "flex";
-     setInterval(() => {
+    setInterval(() => {
       progVal.value += 1;
-      if(progVal.value === 10) {
+      if (progVal.value === 10) {
         progVal.value = 1;
       }
-      if(alertBox.style.display === "flex") {progVal.style.display = "none";}
-     }, 250)}
-
-  function mustBeLoggedIn() {
-    if(!isValidUser) {
-      useStore.getState().greyOut();
-      alertBox.style.display = "flex"
-      alertBox.innerHTML = `You must be logged in to make a payment. <button><a href="/login">Ok</a></button>`
-      
-    } 
+      if (alertBox.style.display === "flex") {
+        progVal.style.display = "none";
+      }
+    }, 250);
   }
 
-
+  function mustBeLoggedIn() {
+    if (!isValidUser) {
+      useStore.getState().greyOut();
+      alertBox.style.display = "flex";
+      alertBox.innerHTML = `You must be logged in to make a payment. <button><a href="/login">Ok</a></button>`;
+    }
+  }
 
   async function handleSubmit(e) {
     progressBar();
@@ -91,24 +83,19 @@ export default function CheckoutForm({ total }) {
       receipt_email: document.getElementById("emailField").value,
     });
 
-
     if (payload.error) {
       setProcessing(false);
       useStore.getState().greyOut();
       alertBox.style.display = "flex";
-      alertBox.innerHTML = `Payment failed: ${payload.error.message}<button><a href="/">Ok</button>`
+      alertBox.innerHTML = `Payment failed: ${payload.error.message}<button><a href="/">Ok</button>`;
     } else {
       setProcessing(false);
       setSucceeded(true);
       useStore.getState().greyOut();
       alertBox.style.display = "flex";
-      alertBox.innerHTML = `Payment was successful! <button><a href="/">Ok</button>`
-      
-
+      alertBox.innerHTML = `Payment was successful! <button><a href="/">Ok</button>`;
     }
   }
-  
-  
 
   async function storeOrder(e) {
     const createOrder = await fetch("http://localhost:3001/confirm_order", {
@@ -117,11 +104,13 @@ export default function CheckoutForm({ total }) {
         "Content-Type": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify({total: total, items: cartItems.map((item) => {
-        return [item.name, item.price, item.qty]
-      })
-    })
-  })
+      body: JSON.stringify({
+        total: total,
+        items: cartItems.map((item) => {
+          return [item.name, item.price, item.qty];
+        }),
+      }),
+    });
 
     if (createOrder.ok) {
       return;
@@ -133,7 +122,6 @@ export default function CheckoutForm({ total }) {
   function changeEmail(e) {
     setEmail(e.target.value);
   }
-  
 
   const inputStyle = {
     width: "100%",
@@ -148,18 +136,22 @@ export default function CheckoutForm({ total }) {
     border: "2px outset lightgrey",
     borderRadius: "4px",
     padding: "2px",
-    margin: "5px"
+    margin: "5px",
   };
-
-
-  
 
   return (
     <>
       {/* <AlertBox /> */}
-      <form onSubmit={handleSubmit} style={{ minWidth: "300px", display: "flex",
-    flexDirection: "column",
-    alignItems: "center" }} id="checkout">
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          minWidth: "300px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+        id="checkout"
+      >
         <label>Email</label>
         <input
           id="emailField"
@@ -185,10 +177,23 @@ export default function CheckoutForm({ total }) {
         <div style={inputStyle2}>
           <CardElement />
         </div>
-        <button id="payBtn" style={btnStyle} type="submit" disabled={!stripe} onClick={storeOrder} onMouseOver={mustBeLoggedIn}>
+        <button
+          id="payBtn"
+          style={btnStyle}
+          type="submit"
+          disabled={!stripe}
+          onClick={storeOrder}
+          onMouseOver={mustBeLoggedIn}
+        >
           Pay
         </button>
-        {<progress max="10" value="1" style={{ width: "100%", display: "none" }}></progress>}
+        {
+          <progress
+            max="10"
+            value="1"
+            style={{ width: "100%", display: "none" }}
+          ></progress>
+        }
       </form>
     </>
   );

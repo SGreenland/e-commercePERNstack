@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm";
@@ -7,8 +7,6 @@ import { cartStore } from "../Store";
 import AlertBox from "./AlertBox";
 import CONFIG from "../config";
 
-
-
 export default function CheckoutWrapper(props) {
   const cartItems = cartStore((state) => state.cartItems);
   const setValidUser = useStore((state) => state.setValidUser);
@@ -16,27 +14,20 @@ export default function CheckoutWrapper(props) {
   const totalCost = props.location.total;
   const paymentFormStyle = { display: "flex", justifyContent: "center" };
 
+  useEffect(() => {
+    setValidUser();
+  });
 
-  
-useEffect(() => {
-   setValidUser()
-})
-
-
-    
-
-  function getTotal()  {
-    if(cartItems.length) {
-      const prices = cartItems.map(item => item.price)
-      return prices.reduce((total, current) => total + current).toFixed(2)
+  function getTotal() {
+    if (cartItems.length) {
+      const prices = cartItems.map((item) => item.price);
+      return prices.reduce((total, current) => total + current).toFixed(2);
+    } else {
+      return 0;
     }
-    else {return 0;}
-  } 
-
+  }
 
   function getItemsNice() {
-    
-    
     function setEmojis() {
       cartItems.forEach((item) => {
         switch (item.name) {
@@ -66,7 +57,9 @@ useEffect(() => {
 
     setEmojis();
     const orderSum = cartItems.map((item) => (
-      <li value={item.qty} style={{ listStyle: item.style }}>{item.name} x ({item.qty}): £{item.price.toFixed(2)}</li>
+      <li value={item.qty} style={{ listStyle: item.style }}>
+        {item.name} x ({item.qty}): £{item.price.toFixed(2)}
+      </li>
     ));
 
     return orderSum;
@@ -75,7 +68,7 @@ useEffect(() => {
   return (
     <div style={paymentFormStyle}>
       <Elements stripe={promise}>
-      <AlertBox />
+        <AlertBox />
         <div id="checkout">
           <h3>Order Summary:</h3>
           {getItemsNice()}
@@ -89,7 +82,6 @@ useEffect(() => {
           >
             <CheckoutForm total={totalCost} />
           </div>
-          
         </div>
       </Elements>
     </div>
