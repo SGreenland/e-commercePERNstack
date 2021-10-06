@@ -23,7 +23,7 @@ export default function CheckoutForm({ total }) {
 
     const getKey = async () => {
       try {
-        const response = await fetch("http://localhost:3001/pay", {
+        const response = await fetch("https://samsfruitstore-pernstack.herokuapp.com/pay", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -98,7 +98,7 @@ export default function CheckoutForm({ total }) {
   }
 
   async function storeOrder(e) {
-    const createOrder = await fetch("http://localhost:3001/confirm_order", {
+    const createOrder = await fetch("https://samsfruitstore-pernstack.herokuapp.com/confirm_order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

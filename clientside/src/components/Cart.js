@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function Cart(props) {
   const cartItems = cartStore((state) => state.cartItems);
   let i = 0;
-  const totalCost = [];
+  const pricesArr = [];
   const products = useStore((state) => state.products);
   const setValidUser = useStore((state) => state.setValidUser);
 
@@ -27,15 +27,15 @@ function Cart(props) {
     useStore.setState({ itemCount: 0 });
   }
 
-  const CalcTotal = async () => {
+  const getPricesArr = async () => {
     for (let i = 0; i < cartItems.length; i++)
-      totalCost.push(cartItems[i].price);
+      pricesArr.push(cartItems[i].price);
   };
 
-  CalcTotal();
+  getPricesArr();
 
   let total = cartItems.length
-    ? totalCost.reduce((total, current) => total + current).toFixed(2)
+    ? pricesArr.reduce((total, current) => total + current).toFixed(2)
     : 0;
 
   return (

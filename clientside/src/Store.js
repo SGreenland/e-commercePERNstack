@@ -92,7 +92,7 @@ const useStore = create(
       isValidUser: false,
       setValidUser: async () => {
         try {
-          const response = await fetch("http://localhost:3001/verify", {
+          const response = await fetch("https://samsfruitstore-pernstack.herokuapp.com/verify", {
             credentials: "include",
 
           });
