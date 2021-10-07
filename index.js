@@ -105,7 +105,7 @@ app.post("/login", async (req, res) => {
     const token = jwtGenerator(user.rows[0].id);
     const userName = user.rows[0].username;
 
-    res.cookie("token", token, { httpOnly: true });
+    res.cookie("token", token, { secure: true, httpOnly: true });
     // res.cookie('username', userName)
 
     res.json({ token, userName });
