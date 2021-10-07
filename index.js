@@ -14,7 +14,7 @@ const stripe = require("stripe")(
 
 const app = express();
 
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 app.use(cookieParser(process.env.jwtSecret));
 app.use(express.json());
 
@@ -105,7 +105,7 @@ app.post("/login", async (req, res) => {
     const token = jwtGenerator(user.rows[0].id);
     const userName = user.rows[0].username;
 
-    res.cookie("token", token, { secure: true, httpOnly: true });
+    res.cookie("token", token, { secure: true, httpOnly: true, sameSite: 'none' });
     // res.cookie('username', userName)
 
     res.json({ token, userName });
