@@ -18,6 +18,10 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(cookieParser(process.env.jwtSecret));
 app.use(express.json());
 
+app.get("/", async (req, res) => {
+  res.send("hello world");
+})
+
 //get products
 
 app.get("/products", async (req, res) => {
