@@ -72,7 +72,7 @@ export const Homepage = (props) => {
 
 
   async function logout() {
-    const response = await fetch("https://samsfruitstore-pernstack.herokuapp.com/logout", {
+    const response = await fetch("https://samsfruitstore-pernstack.herokuapp.comsslmode=require/logout", {
       credentials: "include",
     });
 
@@ -133,7 +133,7 @@ export function CreateNewUser() {
     try {
       const body = { userName, email, password };
 
-      const response = await fetch("https://samsfruitstore-pernstack.herokuapp.com/create_user", {
+      const response = await fetch("https://samsfruitstore-pernstack.herokuapp.comsslmode=require/create_user", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(body),
@@ -216,7 +216,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://samsfruitstore-pernstack.herokuapp.com/login", {
+      const response = await fetch("https://samsfruitstore-pernstack.herokuapp.comsslmode=require/login", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(body),
