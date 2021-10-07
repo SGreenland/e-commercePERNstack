@@ -3,7 +3,7 @@ const cors = require("cors");
 const pool = require("./db");
 const bcrypt = require("bcrypt");
 const { response } = require("express");
-const jwtGenerator = require("./jwtGenerator");
+const jwtGenerator = require("./jwtGenerator").default;
 const authorization = require("./middleware/authorization");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
@@ -120,7 +120,7 @@ app.get("/verify", async (req, res) => {
   try {
     const cookie = req.cookies.token;
     
-    if (jwt.verify(cookie, process.env.jwtSecret)) {
+    if (jwt.verify(cookie, process.env.JWT_SECRET)) {
       res.send("valid user");
     }
   } catch (err) {
