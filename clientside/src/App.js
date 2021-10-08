@@ -214,8 +214,10 @@ export default function Login() {
   const body = { email, password };
 
   useEffect(() => {
-    setValidUser();
-  }, []);
+    return () => {
+      setValidUser();
+     }
+    }, []);
 
   const getUser = async (e) => {
     e.preventDefault();
