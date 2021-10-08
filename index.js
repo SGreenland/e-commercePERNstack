@@ -139,6 +139,8 @@ app.get("/verify", async (req, res) => {
 //logout
 
 app.get("/logout", async (req, res) => {
+  const cookie = req.cookies.token
+  console.log(cookie)
   try {
     res.cookie("token", "", { maxAge: 0, domain: "https://samsfruitstore-pernstack.netlify.app/login", sameSite: "none" }).send("lovely jubbly");
   } catch (err) {
