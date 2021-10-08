@@ -86,7 +86,7 @@ export const Homepage = (props) => {
       <div className="homepage-nav">
         <div className="logocontainer">
           <picture>
-            <img src={logo} alt="logo" width="90%" height="95%" />
+            <img src={logo} alt="logo" width="100%" height="95%" />
           </picture>
         </div>
         <div id="inputcontainer">
