@@ -75,9 +75,10 @@ export default function CheckoutWrapper(props) {
           <h3>Total:</h3>£{getTotal()}
           <div
             style={{
-              border: "2px solid",
+              border: "2px solid #587c03",
               padding: "8px",
               width: "min-content",
+              borderRadius: "4px"
             }}
           >
             <CheckoutForm total={totalCost} />

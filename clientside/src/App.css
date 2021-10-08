@@ -217,13 +217,14 @@ button:hover {
 }
 
 .formBtn, .formInput {
-  height: 100%;
   width: 100%;
   margin-block: 5px;
+  padding: 2px;
 }
 .formInput {
   border: 2px outset;
   border-radius: 4px;
+  
 }
 
 input {
