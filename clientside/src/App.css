@@ -54,9 +54,14 @@ html {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-inline: 5%;
   position: relative;
   z-index: initial;
+  width: 100%;
+}
+
+.loginForm {
+  min-width: 40vw;
+  max-width: 80vw;
 }
 
 a {
@@ -211,11 +216,18 @@ button:hover {
   filter: drop-shadow(2px 3px 4px black);
 }
 
-.formBtn,
-.formInput {
+.formBtn, .formInput {
   height: 100%;
   width: 100%;
   margin-block: 5px;
+}
+.formInput {
+  border: 2px outset;
+  border-radius: 4px;
+}
+
+input {
+  outline: none;
 }
 
 .clearCart {

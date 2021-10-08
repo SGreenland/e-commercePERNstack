@@ -163,7 +163,7 @@ export function CreateNewUser() {
       <AlertBox />
       <div id="formy">
         <h1>Create Account</h1>
-        <form onSubmit={onSubmitForm}>
+        <form onSubmit={onSubmitForm} className="loginForm">
           <input
             className="formInput"
             required
@@ -256,7 +256,7 @@ export default function Login() {
       <AlertBox />
       <div id="formy">
         <h1>Login</h1>
-        <form onSubmit={getUser}>
+        <form onSubmit={getUser} className="loginForm">
           <input
             className="formInput"
             placeholder="email"
