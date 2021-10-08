@@ -39,6 +39,8 @@ html {
 #searchbar {
   width: 100%;
   text-overflow: ellipsis;
+  border: none;
+  padding: 2px;
 }
 
 #login-signup {
@@ -195,6 +197,7 @@ button {
 #cartHead {
   color: whitesmoke;
   background-color: #e6830d;
+  padding: 2px;
 }
 
 .removeItem {

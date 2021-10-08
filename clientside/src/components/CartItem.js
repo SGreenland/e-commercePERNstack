@@ -58,7 +58,7 @@ export default function CartItem({ item, total }) {
         <button id="qtybtn" onClick={minusQty}>
           -
         </button>
-        <div style={{paddingInline: "3px"}}>{item.qty}</div>
+        <div style={{paddingInline: "3px", display: "flex", alignItems: "center"}}>{item.qty}</div>
         <button id="qtybtn" onClick={addQty}>
           +
         </button>
