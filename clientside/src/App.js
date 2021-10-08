@@ -209,11 +209,17 @@ export function CreateNewUser() {
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const setValidUser = useStore((state) => state.setValidUser);
   var alertBox = document.getElementById("alertBox");
   const body = { email, password };
 
+  useEffect(() => {
+    setValidUser();
+  }, []);
+
   const getUser = async (e) => {
     e.preventDefault();
+  
 
     try {
       const response = await fetch("https://samsfruitstore-pernstack.herokuapp.com/login", {
