@@ -140,7 +140,7 @@ app.get("/verify", async (req, res) => {
 
 app.get("/logout", async (req, res) => {
   try {
-    res.cookie("token", "", { maxAge: 0, domain: "https://samsfruitstore-pernstack.netlify.app/login" }).send("lovely jubbly");
+    res.cookie("token", "", { maxAge: 0, domain: "https://samsfruitstore-pernstack.netlify.app" }).send("lovely jubbly");
   } catch (err) {
     res.status(401).send("unauthorised");
     console.error(err.message);
