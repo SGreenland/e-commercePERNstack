@@ -59,6 +59,12 @@ html {
   width: 100%;
 }
 
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #f9fbe7 inset !important;
+}
+
 .loginForm {
   min-width: 40vw;
   max-width: 80vw;
@@ -191,7 +197,7 @@ button {
   background-color: #74a304;
   border: none;
   border-radius: 4px;
-  filter: drop-shadow(2px 1px 2px black);
+  filter: drop-shadow(1px 1px 1px black);
 }
 
 #cartItems {
@@ -212,7 +218,7 @@ button {
 button:hover {
   font-weight: bold;
   color: ghostwhite;
-  filter: drop-shadow(2px 3px 4px black);
+  filter: drop-shadow(2px 1px 2px black);
 }
 
 .formBtn, .formInput {

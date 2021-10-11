@@ -6,6 +6,9 @@ import {cartStore} from "../Store";
 export default function CartItem({ item, total }) {
   const cartItems = cartStore((state) => state.cartItems);
   const products = useStore((state) => state.products);
+  const setProdDefault = useStore((state) => state.setProdDefault);
+
+  setProdDefault();
 
 
   function removeItem() {
