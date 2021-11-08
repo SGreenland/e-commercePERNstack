@@ -8,6 +8,7 @@ html {
 }
 #root {
   height: 100vh;
+  background: whitesmoke;
 }
 
 .homepage-nav {
@@ -105,9 +106,15 @@ a:hover {
 .product {
   display: flex;
   justify-content: space-around;
+  text-align: center;
   flex-direction: column;
   width: 30%;
   padding: 1.5rem;
+  border: 1px solid lightgrey;
+  box-shadow: 4px 5px 5px lightgrey;
+  margin: 25px;
+  border-radius: 4px;
+  background: white;
 }
 
 .addToCart {
@@ -125,22 +132,19 @@ a:hover {
    100% {bottom: 0px;}
 }
 
-#prodImg  {
-  display: flex;
-  align-items: center;
-  width: 90%;
-}
 #prodDescrip {
-  opacity: 0;
-  transition: opacity 2s;
   font-size: smaller;
-  line-height: normal;
-  height: 12vh;
   overflow-y: hidden;
+  padding-bottom: 5px;
 }
 
- #prodImg:hover > #prodDescrip {
-  opacity: 1;
+.productPrice {
+  font-weight: bold;
+  color: white;
+  background: #587c03;
+  width: 25%;
+  margin: auto;
+  margin-bottom: 5px;
 }
 
 
@@ -300,9 +304,9 @@ summary::marker {
   color: #587c03;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 700px) {
   .product {
-    width: 65%;
+    width: 75%;
   }
   table {
     width: 75%;
