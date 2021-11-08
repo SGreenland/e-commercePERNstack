@@ -42,7 +42,7 @@ export const Homepage = (props) => {
 
   useEffect(() => {
     setValidUser();
-  }, []);
+  }, [setValidUser]);
 
   function filterProds(e) {
     e.preventDefault();

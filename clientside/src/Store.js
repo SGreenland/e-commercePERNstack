@@ -104,7 +104,7 @@ const useStore = create(
             const error = await response.text()
             if (error === "jwt expired") {
               alert("your session has timed out.")
-              set({isValidUser: false});    
+              set({isValidUser: false});   
             }
           }
 

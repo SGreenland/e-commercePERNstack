@@ -124,20 +124,17 @@ export default function CheckoutForm({ total }) {
   }
 
   const inputStyle = {
-    width: "100%",
-    border: "2px outset lightgrey",
-    borderRadius: "4px",
-    height: "3vh",
-    padding: "10px",
-    margin: "5px",
+    border: "2px inset rgb(194 106 1)",
+    background: "whitesmoke"
   };
-  const inputStyle2 = {
-    width: "100%",
-    border: "2px outset lightgrey",
-    borderRadius: "4px",
-    padding: "2px",
-    margin: "5px",
-  };
+  // const inputStyle2 = {
+  //   width: "100%",
+  //   border: "2px inset",
+  //   borderRadius: "4px",
+  //   padding: "4px",
+  //   margin: "5px",
+  //   background: "white"
+  // };
 
   return (
     <>
@@ -149,32 +146,35 @@ export default function CheckoutForm({ total }) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          color: "white"
         }}
         id="checkout"
       >
         <label>Email</label>
         <input
+          style={inputStyle} 
           id="emailField"
           type="email"
           placeholder="Email"
-          style={inputStyle}
+          className="formInput"
           required
           value={email}
           onChange={changeEmail}
         ></input>
         <label for="nameField">Name</label>
         <input
-          style={inputStyle}
+          style={inputStyle} 
+          className="formInput"
           placeholder="Name"
           id="nameField"
           required
         ></input>
         <label>Shipping Address</label>
-        <input style={inputStyle} placeholder="Address Line 1" required></input>
-        <input style={inputStyle} placeholder="Address Line 2" required></input>
-        <input style={inputStyle} placeholder="Postcode/ZIP" required></input>
+        <input style={inputStyle} className="formInput" placeholder="Address Line 1" required></input>
+        <input style={inputStyle}  className="formInput" placeholder="Address Line 2" required></input>
+        <input style={inputStyle}  className="formInput" placeholder="Postcode/ZIP" required></input>
         <label>Card Details</label>
-        <div style={inputStyle2}>
+        <div className="formInput" id="cardInput" style={inputStyle}>
           <CardElement />
         </div>
         <button
