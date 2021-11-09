@@ -8,6 +8,10 @@ html {
   overflow-y: scroll;
 }
 
+#root {
+  height: 100vh;
+}
+
 h1 {
   margin-block: 10px;
 }
