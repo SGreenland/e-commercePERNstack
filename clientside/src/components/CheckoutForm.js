@@ -23,14 +23,17 @@ export default function CheckoutForm({ total }) {
 
     const getKey = async () => {
       try {
-        const response = await fetch("https://samsfruitstore-pernstack.herokuapp.com/pay", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({ total: total, items: cartItems }),
-        });
+        const response = await fetch(
+          "https://samsfruitstore-pernstack.herokuapp.com/pay",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({ total: total, items: cartItems }),
+          }
+        );
 
         if (response.ok) {
           const key = await response.json();
@@ -59,7 +62,7 @@ export default function CheckoutForm({ total }) {
   function mustBeLoggedIn() {
     if (!isValidUser) {
       useStore.getState().greyOut();
-      alertBox.style.display = "flex";
+      alertBox.style.display = "grid";
       alertBox.innerHTML = `You must be logged in to make a payment. <button><a href="/login">Ok</a></button>`;
     }
   }
@@ -98,19 +101,22 @@ export default function CheckoutForm({ total }) {
   }
 
   async function storeOrder(e) {
-    const createOrder = await fetch("https://samsfruitstore-pernstack.herokuapp.com/confirm_order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        total: total,
-        items: cartItems.map((item) => {
-          return [item.name, item.price, item.qty];
+    const createOrder = await fetch(
+      "https://samsfruitstore-pernstack.herokuapp.com/confirm_order",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          total: total,
+          items: cartItems.map((item) => {
+            return [item.name, item.price, item.qty];
+          }),
         }),
-      }),
-    });
+      }
+    );
 
     if (createOrder.ok) {
       return;
@@ -125,34 +131,25 @@ export default function CheckoutForm({ total }) {
 
   const inputStyle = {
     border: "2px inset rgb(194 106 1)",
-    background: "whitesmoke"
+    background: "whitesmoke",
   };
-  // const inputStyle2 = {
-  //   width: "100%",
-  //   border: "2px inset",
-  //   borderRadius: "4px",
-  //   padding: "4px",
-  //   margin: "5px",
-  //   background: "white"
-  // };
 
   return (
     <>
-      {/* <AlertBox /> */}
       <form
         onSubmit={handleSubmit}
         style={{
-          minWidth: "300px",
+          minWidth: "280px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          color: "white"
+          color: "white",
         }}
         id="checkout"
       >
         <label>Email</label>
         <input
-          style={inputStyle} 
+          style={inputStyle}
           id="emailField"
           type="email"
           placeholder="Email"
@@ -163,16 +160,31 @@ export default function CheckoutForm({ total }) {
         ></input>
         <label for="nameField">Name</label>
         <input
-          style={inputStyle} 
+          style={inputStyle}
           className="formInput"
           placeholder="Name"
           id="nameField"
           required
         ></input>
         <label>Shipping Address</label>
-        <input style={inputStyle} className="formInput" placeholder="Address Line 1" required></input>
-        <input style={inputStyle}  className="formInput" placeholder="Address Line 2" required></input>
-        <input style={inputStyle}  className="formInput" placeholder="Postcode/ZIP" required></input>
+        <input
+          style={inputStyle}
+          className="formInput"
+          placeholder="Address Line 1"
+          required
+        ></input>
+        <input
+          style={inputStyle}
+          className="formInput"
+          placeholder="Address Line 2"
+          required
+        ></input>
+        <input
+          style={inputStyle}
+          className="formInput"
+          placeholder="Postcode/ZIP"
+          required
+        ></input>
         <label>Card Details</label>
         <div className="formInput" id="cardInput" style={inputStyle}>
           <CardElement />

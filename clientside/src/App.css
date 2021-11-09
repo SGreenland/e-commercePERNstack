@@ -11,6 +11,10 @@ html {
   background: whitesmoke;
 }
 
+h1 {
+  margin-block: 10px;
+}
+
 .homepage-nav {
   display: flex;
   align-items: center;
@@ -18,17 +22,31 @@ html {
   width: 100%;
   padding: 0.5em;
   border-bottom: solid 1px;
-  background-color: #e6830d;
+  background: #e6830d;
   color: whitesmoke;
   margin: 0;
   position: fixed;
-  height: 13vh;
+  height: 100px;
   z-index: 10;
 }
 
 .logocontainer {
   display: flex;
   width: 30%;
+}
+
+picture {
+  transition: transform 150ms;
+}
+
+picture:hover,
+.picture:active {
+  transform: scale(1.05);
+}
+
+.fas:hover,
+.fas:active {
+  font-size: larger;
 }
 
 #inputcontainer {
@@ -44,11 +62,19 @@ html {
   padding: 2px;
 }
 
+#searchbtn {
+  border-radius: 0px 4px 4px 0px;
+  background-color: #e6b90d;
+  width: 30px;
+}
+
 #login-signup {
   display: flex;
   justify-content: space-evenly;
   width: 30%;
   flex-wrap: wrap;
+  font-weight: 500;
+  align-items: center;
 }
 
 #formy {
@@ -60,12 +86,14 @@ html {
   width: 100%;
 }
 
+::placeholder {
+  text-transform: capitalize;
+}
+
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px whitesmoke
-   inset !important;
-  
+  -webkit-box-shadow: 0 0 0 1000px bisque inset !important;
 }
 
 input:focus {
@@ -73,27 +101,28 @@ input:focus {
 }
 
 .loginForm {
-  min-width: 40vw;
-  max-width: 80vw;
+  min-width: 280px;
+  max-width: 420px;
 }
 
 a {
-  color: whitesmoke;
+  color: white;
 }
 
 a:hover {
   text-decoration: none;
   color: ghostwhite;
-  font-weight: bold;
+  font-size: large;
 }
 
-.fas:hover {
-  font-size: large;
+button a:hover {
+  font-size: initial;
 }
 
 .prodContainer {
   position: relative;
-  top: 13%;
+  top: 100px;
+  background: whitesmoke;
 }
 .products {
   display: flex;
@@ -120,20 +149,30 @@ a:hover {
 .addToCart {
   width: 90%;
 }
-#carty{
+#carty {
   position: relative;
 }
 
 @keyframes bounce {
-   0% {bottom: 0px;}
-   25% {bottom: 1px}
-   50% {bottom: 2px;}
-   75% {bottom: 1px;}
-   100% {bottom: 0px;}
+  0% {
+    bottom: 0px;
+  }
+  25% {
+    bottom: 1px;
+  }
+  50% {
+    bottom: 2px;
+  }
+  75% {
+    bottom: 1px;
+  }
+  100% {
+    bottom: 0px;
+  }
 }
 
 #prodDescrip {
-  font-size: smaller;
+  font-size: 0.9em;
   overflow-y: hidden;
   padding-bottom: 5px;
 }
@@ -147,21 +186,21 @@ a:hover {
   margin-bottom: 5px;
 }
 
-
 #alertBox {
   display: none;
-  justify-content: space-evenly;
-  align-items: center;
   position: absolute;
   left: 0;
   right: 0;
   margin: 0 auto;
   border: outset 1px black;
   border-radius: 4px;
-  padding: 15px;
-  background: linear-gradient(to right, #e6830d 0%, #fefcf4 100%);
+  padding: 20px;
+  background: bisque;
   filter: drop-shadow(2px 3px 4px black);
-  max-width: 200px;
+  width: 80%;
+  max-width: 350px;
+  text-align: center;
+  grid-template-rows: repeat(2, 1fr);
 }
 
 .cart {
@@ -172,10 +211,10 @@ a:hover {
 }
 
 tr {
-  /* border: solid 1px black; */
   height: 100%;
   width: 100%;
   text-align: center;
+  background: white;
 }
 
 th {
@@ -185,6 +224,7 @@ th {
 table {
   width: 40%;
   table-layout: fixed;
+  filter: drop-shadow(2px 4px 6px grey);
 }
 
 td {
@@ -201,7 +241,8 @@ button {
   background-color: #74a304;
   border: none;
   border-radius: 4px;
-  filter: drop-shadow(1px 1px 1px black);
+  height: 30px;
+  filter: drop-shadow(1px 1px 1px #253501);
 }
 
 #cartItems {
@@ -210,8 +251,9 @@ button {
 
 #cartHead {
   color: whitesmoke;
-  background-color: #e6830d;
+  background: linear-gradient(#e6830d, #cd6f00);
   padding: 2px;
+  height: 30px;
 }
 
 .removeItem {
@@ -222,17 +264,19 @@ button {
 button:hover {
   font-weight: bold;
   color: ghostwhite;
-  filter: drop-shadow(2px 1px 2px black);
+  filter: drop-shadow(2px 1px 2px #253501);
 }
 
-.formBtn, .formInput {
+.formBtn,
+.formInput {
   width: 100%;
   margin-block: 5px;
   padding: 2px;
 }
 .formInput {
   border: 2px inset;
-  border-radius: 4px; 
+  border-radius: 4px;
+  height: 30px;
 }
 
 #cardInput {
@@ -242,8 +286,8 @@ button:hover {
 
 #checkout {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
-  margin: auto;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 10px;
 }
 
 input {
@@ -267,13 +311,6 @@ input {
   display: flex;
 }
 
-
-
-#searchbtn {
-  border-radius: 0px 4px 4px 0px;
-  background-color: #e6b90d;
-}
-
 #wlcmMsg {
   display: flex;
   font-size: 2vh;
@@ -287,15 +324,9 @@ a p {
   width: 100%;
 }
 
-.payBtn {
-  min-width: 300px;
-  height: 24px;
-}
-
 label {
   font-weight: bold;
 }
-
 
 progress {
   -webkit-appearance: none;
@@ -321,9 +352,7 @@ progress {
   #checkout {
     display: block;
   }
- 
 }
-
 
 @media only screen and (max-width: 450px) {
   html {
@@ -332,7 +361,9 @@ progress {
   table {
     width: 90%;
   }
-  
+  #root {
+    height: 100%;
+  }
 }
 
 @counter-style banana {
@@ -351,18 +382,16 @@ progress {
 }
 
 @counter-style peach {
-  symbols: \1F351;
+  symbols: \1f351;
   suffix: " ";
 }
 
 @counter-style melon {
-  symbols: \1F348;
+  symbols: \1f348;
   suffix: " ";
 }
 
 @counter-style blueberries {
-  symbols: \1FAD0;
+  symbols: \1fad0;
   suffix: " ";
 }
-
-

@@ -70,11 +70,13 @@ export const Homepage = (props) => {
     !e.target.value && setProdDefault();
   }
 
-
   async function logout() {
-    const response = await fetch("https://samsfruitstore-pernstack.herokuapp.com/logout", {
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://samsfruitstore-pernstack.herokuapp.com/logout",
+      {
+        credentials: "include",
+      }
+    );
 
     !response.ok && alert("error");
 
@@ -86,7 +88,9 @@ export const Homepage = (props) => {
       <div className="homepage-nav">
         <div className="logocontainer">
           <picture>
-            <img src={logo} alt="logo" width="100%" height="95%" />
+            <a href="/">
+              <img src={logo} alt="logo" width="100%" height="95%" />
+            </a>
           </picture>
         </div>
         <div id="inputcontainer">
@@ -96,12 +100,9 @@ export const Homepage = (props) => {
             onKeyPress={filterProducts}
             onKeyUp={filterProds}
           />
-          <button
-            onClick={filterProducts}
-            id="searchbtn"
-            type="submit"
-            className="fas fa-search"
-          ></button>
+          <button onClick={filterProducts} id="searchbtn" type="submit">
+            <i className="fas fa-search"></i>
+          </button>
         </div>
         <div id="login-signup">
           <Link to="/login" onClick={isValidUser && logout} style={menuStyle}>
@@ -133,21 +134,24 @@ export function CreateNewUser() {
     try {
       const body = { userName, email, password };
 
-      const response = await fetch("https://samsfruitstore-pernstack.herokuapp.com/create_user", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        "https://samsfruitstore-pernstack.herokuapp.com/create_user",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
 
       if (response.ok) {
         // const user = await response.json();
 
-        alertBox.style.display = "flex";
+        alertBox.style.display = "grid";
         alertBox.innerHTML = `Account created successfully!<button><a href="/login">Login</a></button>`;
         useStore.getState().greyOut();
       } else {
         const error = await response.json();
-        alertBox.style.display = "flex";
+        alertBox.style.display = "grid";
         alertBox.innerHTML = `${
           error.constraint === "unique_email" && "Email already registered."
         }<button onclick = window.location.reload()>Try again</button>`;
@@ -216,21 +220,23 @@ export default function Login() {
   useEffect(() => {
     return () => {
       setValidUser();
-     }
-    }, []);
+    };
+  }, []);
 
   const getUser = async (e) => {
     e.preventDefault();
-  
 
     try {
-      const response = await fetch("https://samsfruitstore-pernstack.herokuapp.com/login", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(body),
-        withCredentials: true,
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://samsfruitstore-pernstack.herokuapp.com/login",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(body),
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
 
       if (response.ok) {
         const user = await response.json();
@@ -238,11 +244,11 @@ export default function Login() {
         var userName = user.userName;
         sessionStorage.setItem("userEmail", email);
 
-        alertBox.style.display = "flex";
+        alertBox.style.display = "grid";
         alertBox.innerHTML = `Welcome ${userName}!<button><a href="/">Start Shopping!</a></button>`;
         useStore.getState().greyOut();
       } else {
-        alertBox.style.display = "flex";
+        alertBox.style.display = "grid";
         alertBox.innerHTML = `Email or Password incorrect! <button><a href="/login">Try again</a></button>`;
         useStore.getState().greyOut();
       }
@@ -255,17 +261,22 @@ export default function Login() {
     <>
       <AlertBox />
       <div id="formy">
-        <h1>Login</h1>
+        <div>
+          <h1>Login</h1>
+        </div>
         <form onSubmit={getUser} className="loginForm">
           <input
+            required
             className="formInput"
             placeholder="email"
+            type="email"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
           ></input>
           <input
+            required
             className="formInput"
             placeholder="password"
             type="password"

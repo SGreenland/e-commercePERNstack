@@ -12,11 +12,16 @@ export default function CheckoutWrapper(props) {
   const setValidUser = useStore((state) => state.setValidUser);
   const promise = loadStripe(CONFIG.STRIPE_PUBLIC_KEY);
   const totalCost = props.location.total;
-  const paymentFormStyle = {display: "flex", alignItems: "center", height: "100%", flexDirection: "column"};
+  const paymentFormStyle = {
+    display: "flex",
+    alignItems: "center",
+    height: "100%",
+    flexDirection: "column",
+  };
 
   useEffect(() => {
     setValidUser();
-  },[]);
+  }, []);
 
   function getTotal() {
     if (cartItems.length) {
@@ -67,14 +72,16 @@ export default function CheckoutWrapper(props) {
 
   return (
     <div style={paymentFormStyle}>
-      <span><h1>Checkout</h1></span>
+      <span>
+        <h1>Checkout</h1>
+      </span>
       <Elements stripe={promise}>
         <AlertBox />
         <div id="checkout">
-          <div> 
+          <div>
             <h3>Order Summary:</h3>
             {getItemsNice()}
-            <h3>Total:</h3>£{getTotal()}
+            <h3 style={{ marginTop: "10px" }}>Total:</h3>£{getTotal()}
           </div>
           <div
             style={{
@@ -83,7 +90,7 @@ export default function CheckoutWrapper(props) {
               borderRadius: "4px",
               border: "2px outset rgb(194 106 1)",
               filter: "drop-shadow(2px 4px 6px black)",
-              background: "linear-gradient(#e6830d, #cd6f00)"
+              background: "linear-gradient(#e6830d, #cd6f00)",
             }}
           >
             <CheckoutForm total={totalCost} />

@@ -1,7 +1,6 @@
 import React from "react";
 import useStore from "../Store";
-import {cartStore} from "../Store";
-// import _ from 'lodash';
+import { cartStore } from "../Store";
 
 export default function CartItem({ item, total }) {
   const cartItems = cartStore((state) => state.cartItems);
@@ -9,7 +8,6 @@ export default function CartItem({ item, total }) {
   const setProdDefault = useStore((state) => state.setProdDefault);
 
   setProdDefault();
-
 
   function removeItem() {
     let newSlice = cartItems.slice();
@@ -36,8 +34,6 @@ export default function CartItem({ item, total }) {
     const updatedItems = currentItems.slice();
 
     cartStore.setState({ cartItems: updatedItems });
-
-    // console.log(updatedItems);
   }
 
   function minusQty() {
@@ -61,14 +57,22 @@ export default function CartItem({ item, total }) {
         <button id="qtybtn" onClick={minusQty}>
           -
         </button>
-        <div style={{paddingInline: "3px", display: "flex", alignItems: "center"}}>{item.qty}</div>
+        <div
+          style={{
+            paddingInline: "3px",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          {item.qty}
+        </div>
         <button id="qtybtn" onClick={addQty}>
           +
         </button>
       </td>
       <td className="deleteField">
         <button className="cartBtns" onClick={removeItem}>
-          delete
+          Delete
         </button>
       </td>
     </tr>
