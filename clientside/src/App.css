@@ -1,14 +1,11 @@
 body,
 html {
   margin: 0 auto;
+  background: whitesmoke;
 }
 
 html {
   overflow-y: scroll;
-}
-#root {
-  height: 100vh;
-  background: whitesmoke;
 }
 
 h1 {
@@ -103,6 +100,7 @@ input:focus {
 .loginForm {
   min-width: 280px;
   max-width: 420px;
+  width: 80%;
 }
 
 a {
@@ -122,7 +120,7 @@ button a:hover {
 .prodContainer {
   position: relative;
   top: 100px;
-  background: whitesmoke;
+  /* background: whitesmoke; */
 }
 .products {
   display: flex;
@@ -360,9 +358,6 @@ progress {
   }
   table {
     width: 90%;
-  }
-  #root {
-    height: 100%;
   }
 }
 
