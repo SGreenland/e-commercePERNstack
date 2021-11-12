@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.get("/", async (req, res) => {
   res.send("hello world");
-})
+});
 
 //get products
 
@@ -105,7 +105,11 @@ app.post("/login", async (req, res) => {
     const token = jwtGenerator(user.rows[0].id);
     const userName = user.rows[0].username;
 
-    res.cookie("token", token, { secure: true, httpOnly: true, sameSite: 'none' });
+    res.cookie("token", token, {
+      secure: true,
+      httpOnly: true,
+      sameSite: "none",
+    });
     // res.cookie('username', userName)
 
     res.json({ token, userName });
@@ -119,29 +123,34 @@ app.post("/login", async (req, res) => {
 app.get("/verify", async (req, res) => {
   try {
     const cookie = req.cookies.token;
-    
+
     if (jwt.verify(cookie, process.env.JWT_SECRET)) {
       res.send("valid user");
     }
   } catch (err) {
     if (err.message === "jwt expired") {
-      res.status(401).send(err.message)
-      
-    }
-    else {
+      res.status(401).send(err.message);
+      // res.cookie("token", cookie, { secure: true, httpOnly: true, maxAge: 0, sameSite: "none" })
+    } else {
       res.status(401).send("unauthorised");
     }
     console.error(err.message);
-   
   }
 });
 
 //logout
 
 app.get("/logout", async (req, res) => {
-  const cookie = req.cookies.token
+  const cookie = req.cookies.token;
   try {
-    res.cookie("token", cookie, { secure: true, httpOnly: true, maxAge: 0, sameSite: "none" }).send("lovely jubbly");
+    res
+      .cookie("token", cookie, {
+        secure: true,
+        httpOnly: true,
+        maxAge: 0,
+        sameSite: "none",
+      })
+      .send("lovely jubbly");
   } catch (err) {
     res.status(401).send("unauthorised");
     console.error(err.message);
