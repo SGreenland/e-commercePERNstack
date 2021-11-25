@@ -42,7 +42,7 @@ export const Homepage = (props) => {
 
   useEffect(() => {
     setValidUser();
-  }, [setValidUser]);
+  });
 
   function filterProds(e) {
     e.preventDefault();
@@ -109,7 +109,7 @@ export const Homepage = (props) => {
             {isValidUser ? "Logout" : "Login"}
           </Link>
           <span className="cartIcon" style={menuStyle}>
-            <Link to="/cart" class="fas fa-shopping-cart" id="carty">
+            <Link to="/cart" className="fas fa-shopping-cart" id="carty">
               <span style={{ fontFamily: "monospace" }}>{itemCount} </span>
             </Link>
           </span>
@@ -221,7 +221,7 @@ export default function Login() {
     return () => {
       setValidUser();
     };
-  }, []);
+  });
 
   const getUser = async (e) => {
     e.preventDefault();
