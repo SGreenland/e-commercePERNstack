@@ -89,13 +89,13 @@ export default function CheckoutForm({ total }) {
     if (payload.error) {
       setProcessing(false);
       useStore.getState().greyOut();
-      alertBox.style.display = "flex";
+      alertBox.style.display = "grid";
       alertBox.innerHTML = `Payment failed: ${payload.error.message}<button><a href="/">Ok</button>`;
     } else {
       setProcessing(false);
       setSucceeded(true);
       useStore.getState().greyOut();
-      alertBox.style.display = "flex";
+      alertBox.style.display = "grid";
       alertBox.innerHTML = `Payment was successful! <button><a href="/">Ok</button>`;
     }
   }

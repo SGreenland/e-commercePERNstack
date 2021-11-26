@@ -77,6 +77,10 @@ picture:hover,
   padding: 2px;
 }
 
+#searchbar:focus {
+  background: whitesmoke;
+}
+
 #searchbtn {
   border-radius: 0px 4px 4px 0px;
   background-color: #e6b90d;

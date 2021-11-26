@@ -65,6 +65,9 @@ picture:hover,
   text-overflow: ellipsis;
   border: none;
   padding: 2px;
+  &:focus {
+    background: whitesmoke;
+  }
 }
 
 #searchbtn {
