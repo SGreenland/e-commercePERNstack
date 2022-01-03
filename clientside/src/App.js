@@ -7,6 +7,7 @@ import useStore from "./Store";
 import { cartStore } from "./Store";
 import logo from "./images/logo.png";
 import AlertBox from "./components/AlertBox";
+import UserMenu from "./components/UserMenu";
 
 export const Homepage = (props) => {
   const setValidUser = useStore((state) => state.setValidUser);
@@ -16,8 +17,9 @@ export const Homepage = (props) => {
   const setProdDefault = useStore((state) => state.setProdDefault);
   const cartItems = cartStore((state) => state.cartItems);
   const products = useStore((state) => state.products);
-  const menuStyle = { width: "50%", textAlign: "center" };
+  const menuStyle = { width: "50%", textAlign: "center", padding: "20%" };
   const productRef = useRef(products);
+  const [userMenuDisplay, setUserMenuDisplay] = useState("none");
 
   useEffect(() => {
     for (let x = 0; x < cartItems.length; x++) {
@@ -43,6 +45,16 @@ export const Homepage = (props) => {
   useEffect(() => {
     setValidUser();
   });
+
+  function toggleUserMenu() {
+    if (userMenuDisplay === "none") {
+      setUserMenuDisplay("grid");
+      document.getElementById("accIcon").style.background = "#587c03";
+    } else {
+      setUserMenuDisplay("none");
+      document.getElementById("accIcon").style.background = "inherit";
+    }
+  }
 
   function filterProds(e) {
     e.preventDefault();
@@ -70,22 +82,13 @@ export const Homepage = (props) => {
     !e.target.value && setProdDefault();
   }
 
-  async function logout() {
-    const response = await fetch(
-      "https://samsfruitstore-pernstack.herokuapp.com/logout",
-      {
-        credentials: "include",
-      }
-    );
-
-    !response.ok && alert("error");
-
-    useStore.setState({ isValidUser: false });
-  }
-
   return (
     <>
       <div className="homepage-nav">
+        <UserMenu
+          userMenuDisplay={userMenuDisplay}
+          setUserMenuDisplay={setUserMenuDisplay}
+        />
         <div className="logocontainer">
           <picture>
             <a href="/">
@@ -105,18 +108,18 @@ export const Homepage = (props) => {
           </button>
         </div>
         <div id="login-signup">
-          <Link to="/login" onClick={isValidUser && logout} style={menuStyle}>
-            {isValidUser ? "Logout" : "Login"}
-          </Link>
           <span className="cartIcon" style={menuStyle}>
             <Link to="/cart" className="fas fa-shopping-cart" id="carty">
               <span style={{ fontFamily: "monospace" }}>{itemCount} </span>
             </Link>
           </span>
+          <div id="accIcon">
+            <i class="fas fa-user" onClick={toggleUserMenu}></i>
+          </div>
         </div>
       </div>
-      <div className="prodContainer">
-        <Products />
+      <div className="mainContainer">
+        {window.location.pathname === "/" && <Products />}
       </div>
     </>
   );

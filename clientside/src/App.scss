@@ -4,6 +4,8 @@
   justify-content: space-evenly;
 }
 
+$menuBorder: 5px solid #587c03;
+
 body,
 html {
   margin: 0 auto;
@@ -52,6 +54,7 @@ picture:hover,
 .fas:hover,
 .fas:active {
   font-size: larger;
+  cursor: pointer;
 }
 
 #inputcontainer {
@@ -77,10 +80,47 @@ picture:hover,
 }
 
 #login-signup {
-  @include flexDefault();
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 30%;
-  flex-wrap: wrap;
   font-weight: 500;
+}
+
+.userMenu {
+  position: absolute;
+  background-color: bisque;
+  border: $menuBorder;
+  grid-template-rows: 1fr 1fr 1fr;
+  z-index: 1;
+  width: 30vw;
+  left: 70vw;
+  top: 98px;
+  box-shadow: 2px 1px #212529;
+}
+
+#accIcon {
+  position: relative;
+  right: -10px;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userMenuLink {
+  display: block;
+  text-align: justify;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  color: #212529;
+  &:hover {
+    background-color: #74a304;
+    color: white;
+    font-size: medium;
+  }
 }
 
 #formy {
@@ -126,7 +166,7 @@ button a:hover {
   font-size: initial;
 }
 
-.prodContainer {
+.mainContainer {
   position: relative;
   top: 100px;
   /* background: whitesmoke; */
@@ -230,7 +270,8 @@ th {
 }
 
 table {
-  width: 40%;
+  width: 75%;
+  max-width: 600px;
   table-layout: fixed;
   filter: drop-shadow(2px 4px 6px grey);
 }
@@ -350,15 +391,17 @@ progress {
   background-color: white;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 750px) {
   .product {
     width: 75%;
   }
-  table {
-    width: 75%;
-  }
+
   #checkout {
     display: block;
+  }
+  .userMenu {
+    left: 30vw;
+    width: 70vw;
   }
 }
 

@@ -131,6 +131,7 @@ const useStore = create((set, get) => ({
     document.getElementById("root").style.backgroundColor = "rgba(0,0,0,0.5)";
     document.querySelector("body").style.background = "none";
   },
+  accInfoDisplay: "none",
 
   // input: "",
   // setInput: (e) => set(state => ({ input: e.target.value})),
