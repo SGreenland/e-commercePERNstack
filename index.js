@@ -106,7 +106,7 @@ app.post("/login", async (req, res) => {
     const userName = user.rows[0].username;
 
     res.cookie("token", token, {
-      domain: "localhost:3000",
+      domain: process.env.FRONTEND_APP_URL,
       secure: true,
       httpOnly: true,
       sameSite: "none",
