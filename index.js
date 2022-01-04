@@ -106,7 +106,7 @@ app.post("/login", async (req, res) => {
     const userName = user.rows[0].username;
 
     res.cookie("token", token, {
-      domain: "samsfruitstore-pernstack.netlify.app",
+      domain: ".samsfruitstore-pernstack.netlify.app",
       secure: true,
       httpOnly: true,
       sameSite: "none",
