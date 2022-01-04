@@ -16,11 +16,11 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://samsfruitstore-pernstack.netlify.app",
+    origin: process.env.FRONTEND_APP_URL,
     credentials: true,
   })
 );
-app.use(cookieParser(process.env.jwtSecret));
+app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.json());
 app.get("/", async (req, res) => {
   res.send("hello world");
