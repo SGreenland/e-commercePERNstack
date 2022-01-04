@@ -14,10 +14,9 @@ const stripe = require("stripe")(
 
 const app = express();
 
-app.use(cors({ origin: process.env.FRONTEND_APP_URL, credentials: true }));
+app.use(cors({ origin: true, credentials: true }));
 app.use(cookieParser(process.env.jwtSecret));
 app.use(express.json());
-app.enable("trust poxy");
 app.get("/", async (req, res) => {
   res.send("hello world");
 });
