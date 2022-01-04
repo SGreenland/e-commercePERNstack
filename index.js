@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://samsfruitstore-pernstack.netlify.app/",
+    origin: "https://samsfruitstore-pernstack.netlify.app",
     credentials: true,
   })
 );
