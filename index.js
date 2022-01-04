@@ -14,7 +14,12 @@ const stripe = require("stripe")(
 
 const app = express();
 
-app.use(cors({ origin: process.env.FRONTEND_APP_URL, credentials: true }));
+app.use(
+  cors({
+    origin: "https://samsfruitstore-pernstack.netlify.app/",
+    credentials: true,
+  })
+);
 app.use(cookieParser(process.env.jwtSecret));
 app.use(express.json());
 app.enable("trust poxy");
@@ -106,7 +111,6 @@ app.post("/login", async (req, res) => {
     const userName = user.rows[0].username;
 
     res.cookie("token", token, {
-      domain: process.env.FRONTEND_APP_URL,
       secure: true,
       httpOnly: true,
       sameSite: "none",
@@ -132,7 +136,6 @@ app.get("/verify", async (req, res) => {
     if (err.message === "jwt expired") {
       res.status(401).send(err.message);
       res.cookie("token", cookie, {
-        domain: process.env.FRONTEND_APP_URL,
         secure: true,
         httpOnly: true,
         maxAge: 0,
