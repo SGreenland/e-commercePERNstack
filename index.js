@@ -14,10 +14,10 @@ const stripe = require("stripe")(
 
 const app = express();
 
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin: process.env.FRONTEND_APP_URL, credentials: true }));
 app.use(cookieParser(process.env.jwtSecret));
 app.use(express.json());
-
+app.set("trust proxy", 1);
 app.get("/", async (req, res) => {
   res.send("hello world");
 });
@@ -106,11 +106,12 @@ app.post("/login", async (req, res) => {
     const userName = user.rows[0].username;
 
     res.cookie("token", token, {
+      domain: "localhost:3000",
       secure: true,
       httpOnly: true,
       sameSite: "none",
     });
-    // res.cookie('username', userName)
+    console.log("hello");
 
     res.json({ token, userName });
   } catch (err) {
@@ -130,7 +131,12 @@ app.get("/verify", async (req, res) => {
   } catch (err) {
     if (err.message === "jwt expired") {
       res.status(401).send(err.message);
-      // res.cookie("token", cookie, { secure: true, httpOnly: true, maxAge: 0, sameSite: "none" })
+      res.cookie("token", cookie, {
+        secure: true,
+        httpOnly: true,
+        maxAge: 0,
+        sameSite: "none",
+      });
     } else {
       res.status(401).send("unauthorised");
     }
