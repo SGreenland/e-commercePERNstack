@@ -20,7 +20,7 @@ app.use(
     credentials: true,
   })
 );
-app.use(cookieParser(process.env.JWT_SECRET));
+app.use(cookieParser(process.env.jwtSecret));
 app.use(express.json());
 app.get("/", async (req, res) => {
   res.send("hello world");
@@ -110,7 +110,6 @@ app.post("/login", async (req, res) => {
     const userName = user.rows[0].username;
 
     res.cookie("token", token, {
-      domain: process.env.FRONTEND_APP_URL,
       secure: true,
       httpOnly: true,
       sameSite: "none",
@@ -129,7 +128,7 @@ app.get("/verify", async (req, res) => {
   try {
     const cookie = req.cookies.token;
 
-    if (jwt.verify(cookie, process.env.JWT_SECRET)) {
+    if (jwt.verify(cookie, process.env.jwtSecret)) {
       res.send("valid user");
     }
   } catch (err) {
