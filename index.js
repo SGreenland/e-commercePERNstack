@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_APP_URL,
+    origin: true,
     credentials: true,
   })
 );
@@ -110,6 +110,7 @@ app.post("/login", async (req, res) => {
     const userName = user.rows[0].username;
 
     res.cookie("token", token, {
+      domain: process.env.FRONTEND_APP_URL,
       secure: true,
       httpOnly: true,
       sameSite: "none",
