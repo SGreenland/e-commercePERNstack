@@ -49,7 +49,7 @@ app.get("/users", async (req, res) => {
 });
 
 //get single user
-app.get("/users/:id", authorization, async (req, res) => {
+app.get("/users/:id", authorization(), async (req, res) => {
   try {
     const id = req.params.id;
 
