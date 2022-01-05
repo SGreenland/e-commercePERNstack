@@ -53,7 +53,9 @@ app.get("/users/:id", authorization, async (req, res) => {
   try {
     const id = req.params.id;
 
-    const user = await pool.query(`SELECT * FROM user_table WHERE id = ${id}`);
+    res.send(id);
+
+    // const user = await pool.query(`SELECT * FROM user_table WHERE id = ${id}`);
 
     res.json(user.rows[0]);
   } catch (err) {
