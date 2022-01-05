@@ -50,11 +50,15 @@ app.get("/users", async (req, res) => {
 });
 
 //get single user
-app.get("/users/:id", authorization, async (req, res) => {
+app.get("/get_user", authorization, async (req, res) => {
   try {
-    const id = req.params.id;
+    const token = req.cookies.token;
 
-    const user = await pool.query(`SELECT * FROM user_table WHERE id = ${id}`);
+    const userId = jwt.decode(token).user;
+
+    const user = await pool.query(
+      `SELECT * FROM user_table WHERE id = ${userId}`
+    );
 
     res.json(user.rows[0]);
   } catch (err) {

@@ -113,7 +113,6 @@ const useStore = create((set, get) => ({
       return;
     }
   },
-  userName: "",
   itemCount: 0,
   addItemCount: () => set((state) => ({ itemCount: state.itemCount + 1 })),
   removeItems: () => set({ itemCount: 0 }),

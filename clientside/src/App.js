@@ -224,7 +224,7 @@ export default function Login() {
     return () => {
       setValidUser();
     };
-  });
+  }, []);
 
   const getUser = async (e) => {
     e.preventDefault();
@@ -244,13 +244,12 @@ export default function Login() {
       if (response.ok) {
         const user = await response.json();
 
-        useStore.setState({ userName: user.userName });
+        const userName = user.userName;
         sessionStorage.setItem("userEmail", email);
+        // console.log(useStore.getState().userName);
 
         alertBox.style.display = "grid";
-        alertBox.innerHTML = `Welcome ${
-          useStore.getState().userName
-        }!<button><a href="/">Start Shopping!</a></button>`;
+        alertBox.innerHTML = `Welcome ${userName}!<button><a href="/">Start Shopping!</a></button>`;
         useStore.getState().greyOut();
       } else {
         alertBox.style.display = "grid";
