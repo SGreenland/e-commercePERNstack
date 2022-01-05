@@ -244,11 +244,13 @@ export default function Login() {
       if (response.ok) {
         const user = await response.json();
 
-        var userName = user.userName;
+        useStore.setState({ userName: user.userName });
         sessionStorage.setItem("userEmail", email);
 
         alertBox.style.display = "grid";
-        alertBox.innerHTML = `Welcome ${userName}!<button><a href="/">Start Shopping!</a></button>`;
+        alertBox.innerHTML = `Welcome ${
+          useStore.getState().userName
+        }!<button><a href="/">Start Shopping!</a></button>`;
         useStore.getState().greyOut();
       } else {
         alertBox.style.display = "grid";

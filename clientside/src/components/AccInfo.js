@@ -3,7 +3,7 @@ import { Homepage } from "../App";
 import useStore from "../Store";
 
 export default function AccInfo() {
-  const accInfoDisplay = useStore((state) => state.accInfoDisplay);
+  // const accInfoDisplay = useStore((state) => state.accInfoDisplay);
   return (
     <>
       <Homepage />
