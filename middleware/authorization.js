@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
     const cookie = req.cookies.token;
 
     if (jwt.verify(cookie, process.env.JWT_SECRET)) {
-      return next();
+      next();
     }
   } catch (err) {
     console.error(err.message);
