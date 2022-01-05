@@ -234,6 +234,7 @@ export default function Login() {
         "https://samsfruitstore-pernstack.herokuapp.com/login",
         {
           method: "POST",
+          mode: "cors",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(body),
           credentials: "include",
