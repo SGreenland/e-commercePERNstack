@@ -16,8 +16,8 @@ const app = express();
 app.set("trust proxy", 1);
 app.use(
   cors({
-    origin:
-      "https://samsfruitstore-pernstack.netlify.app" || "http://localhost:3000",
+    origin: true,
+    // "https://samsfruitstore-pernstack.netlify.app",
     credentials: true,
   })
 );
