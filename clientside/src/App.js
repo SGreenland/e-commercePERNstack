@@ -21,6 +21,20 @@ export const Homepage = (props) => {
   const productRef = useRef(products);
   const [userMenuDisplay, setUserMenuDisplay] = useState("none");
 
+  function closeModal(event) {
+    if (
+      event.target.id !== "accIcon" &&
+      event.target.className !== "fas fa-user" &&
+      event.target.className !== "userMenuLink"
+    ) {
+      setUserMenuDisplay("none");
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("click", closeModal);
+  }, []);
+
   useEffect(() => {
     for (let x = 0; x < cartItems.length; x++) {
       for (let y = x + 1; y < cartItems.length; y++) {
@@ -49,7 +63,7 @@ export const Homepage = (props) => {
   function toggleUserMenu() {
     if (userMenuDisplay === "none") {
       setUserMenuDisplay("grid");
-      document.getElementById("accIcon").style.background = "#587c03";
+      document.getElementById("accIcon").style.background = "#d16500";
     } else {
       setUserMenuDisplay("none");
       document.getElementById("accIcon").style.background = "inherit";

@@ -1,20 +1,52 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Homepage } from "../App";
 import useStore from "../Store";
 
 export default function AccInfo() {
-  // const accInfoDisplay = useStore((state) => state.accInfoDisplay);
-  const userName = useStore((state) => state.userName);
+  const [userInfo, setUserInfo] = useState("");
+  const isValidUser = useStore((state) => state.isValidUser);
+  const getUserInfo = async () => {
+    try {
+      const response = await fetch(
+        "https://samsfruitstore-pernstack.herokuapp.com/get_user",
+        {
+          credentials: "include",
+        }
+      );
+
+      if (response.ok) {
+        const getInfo = await response.json();
+        setUserInfo(getInfo);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    console.log(userName);
+    getUserInfo();
+
+    if (!isValidUser) {
+      window.location = "/";
+    }
   });
 
   return (
     <>
       <Homepage />
       <div className="mainContainer">
-        <label htmlFor="username">Username:</label>
-        <p id="username">{userName}</p>
+        <table id="userInfoTable">
+          <th colSpan="2" style={{ textAlign: "center" }}>
+            My Account
+          </th>
+          <tr>
+            <th>Username:</th>
+            <td>{userInfo.username}</td>
+          </tr>
+          <tr>
+            <th>Email:</th>
+            <td>{userInfo.email}</td>
+          </tr>
+        </table>
       </div>
     </>
   );

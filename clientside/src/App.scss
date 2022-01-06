@@ -4,7 +4,8 @@
   justify-content: space-evenly;
 }
 
-$menuBorder: 5px solid #587c03;
+$menuBorder: 5px solid #d16500;
+$mainOrange: #df6c01;
 
 body,
 html {
@@ -29,8 +30,8 @@ h1 {
   width: 100%;
   padding: 0.5em;
   border-bottom: solid 1px;
-  background: #e6830d;
-  color: whitesmoke;
+  background: $mainOrange;
+  color: white;
   margin: 0;
   position: fixed;
   height: 100px;
@@ -96,9 +97,33 @@ picture:hover,
   width: 30vw;
   left: 70vw;
   top: 98px;
-  box-shadow: 2px 1px #212529;
 }
 
+#myAccountTooltip {
+  visibility: hidden;
+  position: absolute;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  width: 80%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  background: $mainOrange;
+}
+
+#myAccountTooltip::before {
+  position: absolute;
+  bottom: 100%;
+  content: " ";
+  border-bottom: 10px solid $mainOrange;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 5%;
+}
 #accIcon {
   position: relative;
   right: -10px;
@@ -117,8 +142,8 @@ picture:hover,
   height: 100%;
   color: #212529;
   &:hover {
-    background-color: #74a304;
-    color: white;
+    background-color: #f9d0a0;
+    color: #212529;
     font-size: medium;
   }
 }
@@ -168,9 +193,21 @@ button a:hover {
 
 .mainContainer {
   position: relative;
+  display: flex;
+  justify-content: center;
   top: 100px;
   /* background: whitesmoke; */
 }
+
+#userInfoTable {
+  all: unset;
+}
+
+#userInfoTable th,
+#userInfoTable td {
+  text-align: justify;
+}
+
 .products {
   display: flex;
   flex-direction: row;

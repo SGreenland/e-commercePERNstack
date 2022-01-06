@@ -132,9 +132,6 @@ const useStore = create((set, get) => ({
   },
   accInfoDisplay: "none",
 
-  // input: "",
-  // setInput: (e) => set(state => ({ input: e.target.value})),
-
   filterProducts: (e) => {
     const inputValue = document.getElementById("searchbar").value;
 

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Homepage } from "../App";
 import useStore from "../Store";
 
 export default function UserMenu({ userMenuDisplay, setUserMenuDisplay }) {
@@ -28,6 +27,16 @@ export default function UserMenu({ userMenuDisplay, setUserMenuDisplay }) {
   //   setUserMenuDisplay("none");
   // }
 
+  function showToolTip() {
+    const tooltip = document.getElementById("myAccountTooltip");
+
+    if (tooltip.style.visibility === "hidden") {
+      tooltip.style.visibility = "visible";
+    } else {
+      tooltip.style.visibility = "hidden";
+    }
+  }
+
   return (
     <div className="userMenu" style={{ display: userMenuDisplay }}>
       <div className="UserMenuLinkDiv" style={linkDivStyle}>
@@ -39,14 +48,22 @@ export default function UserMenu({ userMenuDisplay, setUserMenuDisplay }) {
           {isValidUser ? "Logout" : "Login"}
         </Link>
       </div>
-      <div
-        className="UserMenuLinkDiv"
-        style={linkDivStyle}
-        title={!isValidUser && "You must be logged in to view your account."}
-      >
-        <Link to="/accInfo" className="userMenuLink">
+      <div className="UserMenuLinkDiv" style={linkDivStyle}>
+        <Link
+          to="/accInfo"
+          className="userMenuLink"
+          onClick={(event) => {
+            if (!isValidUser) {
+              event.preventDefault();
+              showToolTip();
+            }
+          }}
+        >
           My Account
         </Link>
+        <div id="myAccountTooltip">
+          You must be logged in to view your account.
+        </div>
       </div>
       <div className="UserMenuLinkDiv" style={{ width: "100%" }}>
         <Link to="/home" className="userMenuLink">
