@@ -22,7 +22,7 @@ function OrdersPage() {
             <tr>
               <td>{order.order_id}</td>
               <td>£{(order.amount / 100).toFixed(2)}</td>
-              <td>{order.order_date.split(" ").slice(0, 4).join(" ")}</td>
+              <td>{order.order_date}</td>
             </tr>
           );
         })
