@@ -221,6 +221,21 @@ app.post("/confirm_order", async (req, res) => {
   }
 });
 
+app.get("/get_orders", authorization, async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const userId = parseInt(jwt.decode(token).user);
+
+    const orders = await pool.query(
+      `SELECT * FROM orders_table WHERE user_id = ${userId}`
+    );
+
+    res.json(orders.rows);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 const PORT = 5432;
 
 app.listen(process.env.PORT || PORT);
