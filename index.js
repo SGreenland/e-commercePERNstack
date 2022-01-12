@@ -207,7 +207,7 @@ app.post("/confirm_order", async (req, res) => {
   const token = req.cookies.token;
   const userId = parseInt(jwt.decode(token).user);
   const total = parseInt(JSON.stringify(req.body.total * 100));
-  const date = Date();
+  const date = new Date().toLocaleDateString();
   const items = req.body.items;
   try {
     const newOrder = await pool.query(
