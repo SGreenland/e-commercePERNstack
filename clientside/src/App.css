@@ -30,7 +30,7 @@ h1 {
   padding: 0.5em;
   border-bottom: solid 1px;
   background: #df6c01;
-  color: whitesmoke;
+  color: white;
   margin: 0;
   position: fixed;
   height: 100px;
@@ -246,7 +246,7 @@ button a:hover {
 }
 
 #userInfoTable {
-  all: unset;
+  min-width: 500px;
 }
 
 #userInfoTable th,
@@ -427,10 +427,10 @@ button {
   width: 100%;
 }
 
-#cartHead {
+thead {
   color: whitesmoke;
-  background: -webkit-gradient(linear, left top, left bottom, from(#e6830d), to(#cd6f00));
-  background: linear-gradient(#e6830d, #cd6f00);
+  background: -webkit-gradient(linear, left top, left bottom, from(#df6c01), to(#d16500));
+  background: linear-gradient(#df6c01, #d16500);
   padding: 2px;
   height: 30px;
 }

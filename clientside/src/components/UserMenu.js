@@ -66,7 +66,7 @@ export default function UserMenu({ userMenuDisplay, setUserMenuDisplay }) {
         </div>
       </div>
       <div className="UserMenuLinkDiv" style={{ width: "100%" }}>
-        <Link to="/home" className="userMenuLink">
+        <Link to="/myOrders" className="userMenuLink">
           My Orders
         </Link>
       </div>

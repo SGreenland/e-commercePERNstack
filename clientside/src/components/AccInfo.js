@@ -33,11 +33,13 @@ export default function AccInfo() {
   return (
     <>
       <Homepage />
-      <div className="mainContainer">
+      <div className="mainContainer" style={{ paddingTop: "10px" }}>
         <table id="userInfoTable">
-          <th colSpan="2" style={{ textAlign: "center" }}>
-            My Account
-          </th>
+          <thead>
+            <th colSpan="2" style={{ textAlign: "center" }}>
+              My Account
+            </th>
+          </thead>
           <tr>
             <th>Username:</th>
             <td>{userInfo.username}</td>

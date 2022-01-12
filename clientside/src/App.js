@@ -58,7 +58,7 @@ export const Homepage = (props) => {
 
   useEffect(() => {
     setValidUser();
-  });
+  }, [setValidUser]);
 
   function toggleUserMenu() {
     if (userMenuDisplay === "none") {

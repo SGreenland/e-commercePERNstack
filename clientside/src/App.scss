@@ -6,6 +6,7 @@
 
 $menuBorder: 5px solid #d16500;
 $mainOrange: #df6c01;
+$darkOrange: #d16500;
 
 body,
 html {
@@ -200,7 +201,7 @@ button a:hover {
 }
 
 #userInfoTable {
-  all: unset;
+  min-width: 500px;
 }
 
 #userInfoTable th,
@@ -335,9 +336,9 @@ button {
   width: 100%;
 }
 
-#cartHead {
+thead {
   color: whitesmoke;
-  background: linear-gradient(#e6830d, #cd6f00);
+  background: linear-gradient($mainOrange, $darkOrange);
   padding: 2px;
   height: 30px;
 }

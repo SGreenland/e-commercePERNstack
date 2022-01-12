@@ -6,6 +6,7 @@ import Cart from "./components/Cart";
 import CheckoutWrapper from "./components/CheckoutWrapper";
 import CheckoutForm from "./components/CheckoutForm";
 import AccInfo from "./components/AccInfo";
+import OrdersPage from "./components/OrdersPage";
 
 ReactDOM.render(
   <Router>
@@ -16,6 +17,7 @@ ReactDOM.render(
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/checkout" component={CheckoutWrapper} />
       <Route exact path="/accInfo" component={AccInfo} />
+      <Route exact path="/myOrders" component={OrdersPage} />
     </Switch>
   </Router>,
   document.getElementById("root")
