@@ -16,9 +16,7 @@ function OrdersPage() {
     if (response.ok) {
       const orders = await response.json();
 
-      for (let order in orders) {
-        JSON.stringify(order.items);
-      }
+      console.log(orders);
 
       setOrders(
         orders.map((order) => {
@@ -28,7 +26,7 @@ function OrdersPage() {
                 {order.order_id}
                 <details>
                   <summary>Details</summary>
-                  {typeof order.items}
+                  {""}
                 </details>
               </td>
               <td>£{(order.amount / 100).toFixed(2)}</td>

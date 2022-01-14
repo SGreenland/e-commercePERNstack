@@ -231,7 +231,7 @@ app.get("/get_orders", authorization, async (req, res) => {
       `SELECT * FROM orders_table WHERE user_id = ${userId}`
     );
 
-    res.json(orders.rows);
+    res.json(orders);
   } catch (error) {
     console.log(error);
   }
