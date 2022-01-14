@@ -112,10 +112,7 @@ export default function CheckoutForm({ total }) {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify({
-          total: total,
-          items: { items },
-        }),
+        body: JSON.stringify({ total: total, items: JSON.stringify(items) }),
       }
     );
 

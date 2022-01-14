@@ -16,7 +16,7 @@ function OrdersPage() {
     if (response.ok) {
       const orders = await response.json();
 
-      console.log(orders);
+      orders.forEach((order) => (order.items = JSON.parse(order.items)));
 
       setOrders(
         orders.map((order) => {
@@ -24,9 +24,25 @@ function OrdersPage() {
             <tr>
               <td>
                 {order.order_id}
-                <details>
+                <details
+                  style={{
+                    border: "1px solid black",
+                    background: "#587c03",
+                    color: "white",
+                  }}
+                >
                   <summary>Details</summary>
-                  {""}
+                  {order.items.map((order) => (
+                    <li
+                      style={{
+                        listStyle: "none",
+                        background: "bisque",
+                        color: "black",
+                      }}
+                    >
+                      {order.name} x {order.qty}
+                    </li>
+                  ))}
                 </details>
               </td>
               <td>£{(order.amount / 100).toFixed(2)}</td>
