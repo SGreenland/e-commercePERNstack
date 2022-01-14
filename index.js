@@ -209,6 +209,7 @@ app.post("/confirm_order", async (req, res) => {
   const total = parseInt(JSON.stringify(req.body.total * 100));
   const date = new Date().toLocaleDateString();
   const items = req.body.items;
+
   try {
     const newOrder = await pool.query(
       "INSERT INTO orders_table(user_id, amount, order_date, items) VALUES($1, $2, $3, $4) RETURNING * ",
@@ -230,7 +231,7 @@ app.get("/get_orders", authorization, async (req, res) => {
       `SELECT * FROM orders_table WHERE user_id = ${userId}`
     );
 
-    res.json(orders.rows);
+    res.send(orders.rows);
   } catch (error) {
     console.log(error);
   }

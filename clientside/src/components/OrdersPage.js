@@ -16,11 +16,21 @@ function OrdersPage() {
     if (response.ok) {
       const orders = await response.json();
 
+      for (let order in orders) {
+        JSON.stringify(order.items);
+      }
+
       setOrders(
         orders.map((order) => {
           return (
             <tr>
-              <td>{order.order_id}</td>
+              <td>
+                {order.order_id}
+                <details>
+                  <summary>Details</summary>
+                  {typeof order.items}
+                </details>
+              </td>
               <td>£{(order.amount / 100).toFixed(2)}</td>
               <td>{order.order_date}</td>
             </tr>
@@ -32,7 +42,7 @@ function OrdersPage() {
 
   useEffect(() => {
     isValidUser && getOrders();
-  }, []);
+  });
 
   return (
     <>

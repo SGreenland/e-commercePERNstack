@@ -101,6 +101,9 @@ export default function CheckoutForm({ total }) {
   }
 
   async function storeOrder(e) {
+    const items = cartItems.map((item) => {
+      return { name: item.name, price: item.price, qty: item.qty };
+    });
     const createOrder = await fetch(
       "https://samsfruitstore-pernstack.herokuapp.com/confirm_order",
       {
@@ -111,9 +114,7 @@ export default function CheckoutForm({ total }) {
         credentials: "include",
         body: JSON.stringify({
           total: total,
-          items: cartItems.map((item) => {
-            return [item.name, item.price, item.qty];
-          }),
+          items: { items },
         }),
       }
     );
