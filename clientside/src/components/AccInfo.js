@@ -31,13 +31,11 @@ export default function AccInfo() {
     if (!isValidUser) {
       window.location = "/";
     }
-  });
+  }, []);
 
   async function handlePwChange() {
     try {
       const body = { oldPw, newPw };
-
-      console.log(newPw);
 
       const response = await fetch(
         "https://samsfruitstore-pernstack.herokuapp.com/change_pw",
