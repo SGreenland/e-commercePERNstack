@@ -248,7 +248,7 @@ app.post("/change_pw", authorization, async (req, res) => {
       `SELECT password FROM user_table WHERE id = ${userId}`
     );
 
-    console.log(storedPassword);
+    const hashedPassword = storedPassword.rows[0];
 
     let pwMatch = await bcrypt.compare(oldPw, hashedPassword);
 
