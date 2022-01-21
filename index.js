@@ -250,6 +250,8 @@ app.post("/change_pw", authorization, async (req, res) => {
 
     const hashedPassword = storedPassword.rows[0];
 
+    console.log(hashedPassword);
+
     let pwMatch = await bcrypt.compare(oldPw, hashedPassword);
 
     if (pwMatch) {
