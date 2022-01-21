@@ -238,7 +238,7 @@ app.get("/get_orders", authorization, async (req, res) => {
 });
 
 //change password
-app.put("/change_pw", authorization, async (req, res) => {
+app.post("/change_pw", authorization, async (req, res) => {
   try {
     const token = req.cookies.token;
     const userId = parseInt(jwt.decode(token).user);
@@ -255,7 +255,7 @@ app.put("/change_pw", authorization, async (req, res) => {
       const confirmNewPW = await pool.query(
         `UPDATE user_table SET password = ${newPw} WHERE user_id = ${userId}`
       );
-      res.send("success");
+      res.send("<p>success</p>");
     }
   } catch (error) {
     console.log(error.message);
