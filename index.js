@@ -255,7 +255,7 @@ app.post("/change_pw", authorization, async (req, res) => {
     if (pwMatch) {
       console.log(newPw);
       const confirmNewPW = await pool.query(
-        `UPDATE user_table SET "password" = ${newPw} WHERE id = ${userId}`
+        `UPDATE user_table SET password = ${newPw} WHERE password = ${oldPw}`
       );
       res.send("<p>success</p>");
     }
