@@ -248,7 +248,7 @@ app.post("/change_pw", authorization, async (req, res) => {
       `SELECT password FROM user_table WHERE id = ${userId}`
     );
 
-    const hashedPassword = storedPassword.rows[0];
+    const hashedPassword = storedPassword.rows[0].password;
 
     console.log(hashedPassword);
 
