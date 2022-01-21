@@ -243,7 +243,7 @@ app.post("/change_pw", authorization, async (req, res) => {
     const token = req.cookies.token;
     const userId = parseInt(jwt.decode(token).user);
     const { oldPw, newPw } = req.body;
-    const hashedPassword = user.rows[0].password;
+    const hashedPassword = user;
 
     const user = await pool.query(
       `SELECT password FROM users_table WHERE user_id = ${userId}`

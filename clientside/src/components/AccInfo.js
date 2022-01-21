@@ -37,6 +37,8 @@ export default function AccInfo() {
     try {
       const body = { oldPw, newPw };
 
+      console.log(newPw);
+
       const response = await fetch(
         "https://samsfruitstore-pernstack.herokuapp.com/change_pw",
         {
