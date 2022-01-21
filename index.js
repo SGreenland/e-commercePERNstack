@@ -237,6 +237,31 @@ app.get("/get_orders", authorization, async (req, res) => {
   }
 });
 
+//change password
+app.put("/change_pw", authorization, async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const userId = parseInt(jwt.decode(token).user);
+    const { oldPw, newPw } = req.body;
+    const hashedPassword = user.rows[0].password;
+
+    const user = await pool.query(
+      `SELECT password FROM users_table WHERE user_id = ${userId}`
+    );
+
+    let pwMatch = await bcrypt.compare(oldPw, hashedPassword);
+
+    if (pwMatch) {
+      const confirmNewPW = await pool.query(
+        `UPDATE user_table SET password = ${newPw} WHERE user_id = ${userId}`
+      );
+      res.send("success");
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 const PORT = 5432;
 
 app.listen(process.env.PORT || PORT);

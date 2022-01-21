@@ -165,11 +165,25 @@ picture:hover,
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px bisque inset !important;
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
 }
 
 input:focus {
   border: 2px solid #587c03;
+}
+
+input[pattern]:valid {
+  background-image: url(./images/check_mark.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+input[pattern]:invalid {
+  background-image: url(./images/cross_mark.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 .loginForm {
@@ -207,6 +221,16 @@ button a:hover {
 #userInfoTable th,
 #userInfoTable td {
   text-align: justify;
+}
+
+.thAccInfo {
+  padding: 0.8rem;
+}
+
+#changePWheader {
+  background: linear-gradient($mainOrange, $darkOrange);
+  color: white;
+  text-align: center !important;
 }
 
 .products {
