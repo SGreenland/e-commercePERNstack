@@ -253,8 +253,9 @@ app.post("/change_pw", authorization, async (req, res) => {
     let pwMatch = await bcrypt.compare(oldPw, hashedPassword);
 
     if (pwMatch) {
+      console.log(newPw);
       const confirmNewPW = await pool.query(
-        `UPDATE user_table SET password = ${newPw} WHERE password = ${oldPw}`
+        `UPDATE user_table SET "password" = ${newPw} WHERE id = ${userId}`
       );
       res.send("<p>success</p>");
     }
