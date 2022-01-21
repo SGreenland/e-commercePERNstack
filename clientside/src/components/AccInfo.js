@@ -33,7 +33,8 @@ export default function AccInfo() {
     }
   }, []);
 
-  async function handlePwChange() {
+  async function handlePwChange(e) {
+    e.preventDefault();
     try {
       const body = { oldPw, newPw };
 
@@ -103,7 +104,11 @@ export default function AccInfo() {
           </tr>
           <tr>
             <td colSpan="2">
-              <button onClick={handlePwChange()} className="cartBtns">
+              <button
+                type="submit"
+                onClick={handlePwChange()}
+                className="cartBtns"
+              >
                 Confirm
               </button>
             </td>
