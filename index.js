@@ -245,7 +245,7 @@ app.post("/change_pw", authorization, async (req, res) => {
     const { oldPw, newPw } = req.body;
 
     const hashedPassword = await pool.query(
-      `SELECT password FROM user_table WHERE user_id = ${userId}`
+      `SELECT password FROM user_table WHERE id = ${userId}`
     );
 
     let pwMatch = await bcrypt.compare(oldPw, hashedPassword);
