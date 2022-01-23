@@ -434,6 +434,10 @@ td {
   width: 25%;
 }
 
+td input {
+  width: 100%;
+}
+
 tfoot {
   border-top: 2px solid #e6830d;
 }
@@ -572,9 +576,9 @@ progress {
   }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 600px) {
   html {
-    font-size: small;
+    font-size: smaller;
   }
   table {
     width: 90%;
