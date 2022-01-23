@@ -261,6 +261,7 @@ button a:hover {
 
 #userInfoTable {
   min-width: 300px;
+  word-break: break-all;
 }
 
 #userInfoTable th,
