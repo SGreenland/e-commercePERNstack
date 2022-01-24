@@ -243,20 +243,21 @@ app.post("/change_pw", authorization, async (req, res) => {
     const token = req.cookies.token;
     const userId = parseInt(jwt.decode(token).user);
     const { oldPw, newPw } = req.body;
+    const salt = await bcrypt.genSalt();
 
-    const storedPassword = await pool.query(
+    const storedPw = await pool.query(
       `SELECT password FROM user_table WHERE id = ${userId}`
     );
 
-    const hashedPassword = storedPassword.rows[0].password;
+    const hashedOldPw = storedPw.rows[0].password;
 
-    let pwMatch = await bcrypt.compare(oldPw, hashedPassword);
+    let pwMatch = await bcrypt.compare(oldPw, hashedOldPw);
 
     if (pwMatch) {
-      console.log(newPw);
+      const newhashedPw = await bcrypt.hash(newPw, salt);
       const confirmNewPW = await pool.query(
         "UPDATE user_table SET password = $1 WHERE id = $2",
-        [newPw, userId]
+        [newhashedPw, userId]
       );
       res.send("<p>success</p>");
     }
