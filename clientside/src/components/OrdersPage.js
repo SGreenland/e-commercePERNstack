@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Homepage } from "../App";
 import useStore from "../Store";
+import AlertBox from "./AlertBox";
 
 function OrdersPage() {
   const [orders, setOrders] = useState("");

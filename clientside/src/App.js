@@ -22,12 +22,17 @@ export const Homepage = (props) => {
   const [userMenuDisplay, setUserMenuDisplay] = useState("none");
 
   function closeModal(event) {
-    if (
-      event.target.id !== "accIcon" &&
-      event.target.className !== "fas fa-user" &&
-      event.target.className !== "userMenuLink"
-    ) {
-      setUserMenuDisplay("none");
+    if (window.location.pathname === "/") {
+      if (
+        event.target.id !== "accIcon" &&
+        event.target.className !== "fas fa-user" &&
+        event.target.className !== "userMenuLink"
+      ) {
+        setUserMenuDisplay("none");
+        document.getElementById("accIcon").style.background = "inherit";
+      }
+    } else {
+      return;
     }
   }
 
@@ -161,14 +166,12 @@ export function CreateNewUser() {
       );
 
       if (response.ok) {
-        // const user = await response.json();
-
-        alertBox.style.display = "grid";
+        useStore.setState({ alertBoxDisplay: "grid" });
         alertBox.innerHTML = `Account created successfully!<button><a href="/login">Login</a></button>`;
         useStore.getState().greyOut();
       } else {
         const error = await response.json();
-        alertBox.style.display = "grid";
+        useStore.setState({ alertBoxDisplay: "grid" });
         alertBox.innerHTML = `${
           error.constraint === "unique_email" && "Email already registered."
         }<button onclick = window.location.reload()>Try again</button>`;
@@ -262,12 +265,13 @@ export default function Login() {
         sessionStorage.setItem("userEmail", email);
         // console.log(useStore.getState().userName);
 
-        alertBox.style.display = "grid";
+        // alertBox.style.display = "grid";
+        useStore.setState({ alertBoxDisplay: "grid" });
         alertBox.innerHTML = `Welcome ${userName}!<button><a href="/">Start Shopping!</a></button>`;
         useStore.getState().greyOut();
       } else {
-        alertBox.style.display = "grid";
-        alertBox.innerHTML = `Email or Password incorrect! <button><a href="/login">Try again</a></button>`;
+        useStore.setState({ alertBoxDisplay: "grid" });
+        useStore.setState({ alertBoxMessage: "Email or Password Incorrect" });
         useStore.getState().greyOut();
       }
     } catch (err) {

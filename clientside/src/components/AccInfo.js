@@ -47,7 +47,11 @@ export default function AccInfo() {
         }
       );
       if (response.ok) {
-        alert("Password Updated!");
+        useStore.setState({
+          alertBoxDisplay: "grid",
+          alertBoxMessage: "Password Changed!",
+        });
+        useStore.getState().greyOut();
       }
     } catch (error) {
       console.log(error.message);
@@ -56,6 +60,7 @@ export default function AccInfo() {
 
   return (
     <>
+      <AlertBox />
       <Homepage />
       <div className="mainContainer" style={{ paddingTop: "10px" }}>
         <table id="userInfoTable">

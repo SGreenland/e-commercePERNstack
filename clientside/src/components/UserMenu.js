@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useStore from "../Store";
 
 export default function UserMenu({ userMenuDisplay, setUserMenuDisplay }) {
   const isValidUser = useStore((state) => state.isValidUser);
+  const [visibility, setVisibility] = useState("hidden");
 
   const linkDivStyle = {
     width: "100%",
@@ -28,13 +29,9 @@ export default function UserMenu({ userMenuDisplay, setUserMenuDisplay }) {
   // }
 
   function showToolTip() {
-    const tooltip = document.getElementById("myAccountTooltip");
-
-    if (tooltip.style.visibility === "hidden") {
-      tooltip.style.visibility = "visible";
-    } else {
-      tooltip.style.visibility = "hidden";
-    }
+    visibility === "hidden"
+      ? setVisibility(() => "visible")
+      : setVisibility(() => "hidden");
   }
 
   return (
@@ -52,16 +49,16 @@ export default function UserMenu({ userMenuDisplay, setUserMenuDisplay }) {
         <Link
           to="/accInfo"
           className="userMenuLink"
-          onClick={(event) => {
+          onClick={(e) => {
             if (!isValidUser) {
-              event.preventDefault();
+              e.preventDefault();
               showToolTip();
             }
           }}
         >
           My Account
         </Link>
-        <div id="myAccountTooltip">
+        <div id="myAccountTooltip" style={{ visibility: visibility }}>
           You must be logged in to view your account.
         </div>
       </div>

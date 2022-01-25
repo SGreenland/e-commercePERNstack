@@ -121,15 +121,31 @@ const useStore = create((set, get) => ({
   itemNames: products.map((product) => product.name),
   itemPrices: products.map((product) => product.price),
   greyOut: () => {
-    const container =
-      document.getElementById("formy") || document.getElementById("checkout");
+    const root = document.getElementById("root");
+    const mainComponents = Array.from(root.children).filter(
+      (element) => element.id !== "alertBox"
+    );
 
-    if (container) {
-      container.style.zIndex = "-1";
+    mainComponents.forEach((comp) => {
+      if (comp.style.zIndex !== "-1") {
+        comp.style.zIndex = "-1";
+      } else if (comp.id !== "homepage-nav") {
+        comp.style.zIndex = "inherit";
+      } else {
+        comp.style.zIndex = "10";
+      }
+    });
+
+    if (!root.style.backgroundColor) {
+      root.style.backgroundColor = "rgba(0,0,0,0.5)";
+      document.querySelector("body").style.background = "none";
+    } else {
+      root.removeAttribute("style");
+      document.querySelector("body").style.background = "whitesmoke";
     }
-    document.getElementById("root").style.backgroundColor = "rgba(0,0,0,0.5)";
-    document.querySelector("body").style.background = "none";
   },
+  alertBoxDisplay: "none",
+  alertBoxMessage: "",
   accInfoDisplay: "none",
 
   filterProducts: (e) => {
