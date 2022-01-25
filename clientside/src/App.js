@@ -21,23 +21,24 @@ export const Homepage = (props) => {
   const productRef = useRef(products);
   const [userMenuDisplay, setUserMenuDisplay] = useState("none");
 
-  function closeModal(event) {
-    if (window.location.pathname === "/") {
+  useEffect(() => {
+    const accIcon = document.getElementById("accIcon");
+    function closeModal(event) {
       if (
         event.target.id !== "accIcon" &&
         event.target.className !== "fas fa-user" &&
         event.target.className !== "userMenuLink"
       ) {
         setUserMenuDisplay("none");
-        document.getElementById("accIcon").style.background = "inherit";
+        if (accIcon) {
+          accIcon.style.background = "inherit";
+        }
       }
-    } else {
-      return;
     }
-  }
-
-  useEffect(() => {
     document.addEventListener("click", closeModal);
+    return () => {
+      document.removeEventListener("click", closeModal);
+    };
   }, []);
 
   useEffect(() => {
