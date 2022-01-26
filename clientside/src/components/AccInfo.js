@@ -1,4 +1,3 @@
-import { response } from "express";
 import React, { useEffect, useState } from "react";
 import { Homepage } from "../App";
 import useStore from "../Store";
@@ -53,10 +52,12 @@ export default function AccInfo() {
           alertBoxMessage: "Password Changed!",
         });
         useStore.getState().greyOut();
+      } else {
+        const error = await response.json();
+        console.log(error);
       }
     } catch (error) {
-      const errorMsg = await error;
-      console.log(errorMsg);
+      console.log(error);
     }
   }
 
