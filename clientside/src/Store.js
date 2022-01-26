@@ -135,7 +135,7 @@ const useStore = create((set, get) => ({
       ) {
         comp.style.zIndex = "10";
       } else {
-        comp.style.zIndex = "inherit";
+        comp.style.zIndex = "auto";
       }
     });
 
