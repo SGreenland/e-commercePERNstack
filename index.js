@@ -259,10 +259,10 @@ app.post("/change_pw", authorization, async (req, res) => {
         "UPDATE user_table SET password = $1 WHERE id = $2",
         [newhashedPw, userId]
       );
-      res.send("<p>success</p>");
+      res.send("success");
     }
   } catch (error) {
-    console.log(error.message);
+    res.status(400).send(error.message);
   }
 });
 
