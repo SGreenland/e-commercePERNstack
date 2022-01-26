@@ -55,7 +55,8 @@ export default function AccInfo() {
         useStore.getState().greyOut();
       }
     } catch (error) {
-      console.log(error.message);
+      const errorMsg = await error;
+      console.log(errorMsg);
     }
   }
 
