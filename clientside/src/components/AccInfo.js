@@ -54,10 +54,14 @@ export default function AccInfo() {
         useStore.getState().greyOut();
       } else {
         const errorMsg = await response.json();
-        console.log(errorMsg);
+        useStore.setState({
+          alertBoxDisplay: "grid",
+          alertBoxMessage: errorMsg.message,
+        });
+        useStore.getState().greyOut();
       }
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   }
 

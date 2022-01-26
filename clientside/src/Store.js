@@ -129,10 +129,13 @@ const useStore = create((set, get) => ({
     mainComponents.forEach((comp) => {
       if (comp.style.zIndex !== "-1") {
         comp.style.zIndex = "-1";
-      } else if (comp.id !== "homepage-nav") {
-        comp.style.zIndex = "inherit";
-      } else {
+      } else if (
+        comp.className === "homepage-nav" ||
+        comp.className === "userMenu"
+      ) {
         comp.style.zIndex = "10";
+      } else {
+        comp.style.zIndex = "inherit";
       }
     });
 

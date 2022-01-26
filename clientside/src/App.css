@@ -99,6 +99,7 @@ picture:hover,
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 30%;
+  height: 100%;
   font-weight: 500;
 }
 
