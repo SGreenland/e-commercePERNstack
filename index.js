@@ -261,7 +261,7 @@ app.post("/change_pw", authorization, async (req, res) => {
       );
       res.send("success");
     } else {
-      res.status(400).send("Old password not recognised!");
+      res.status(400).json({ message: "Old password not recognised!" });
     }
   } catch (error) {
     console.log(error.message);

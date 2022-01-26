@@ -55,10 +55,9 @@ export default function AccInfo() {
       } else {
         const errorMsg = await response.json();
         console.log(errorMsg);
-        console.log("error!");
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 
