@@ -53,8 +53,9 @@ export default function AccInfo() {
         });
         useStore.getState().greyOut();
       } else {
-        const error = await response.json();
-        console.log(error);
+        const errorMsg = await response.json();
+        console.log(errorMsg);
+        console.log("error!");
       }
     } catch (error) {
       console.log(error);

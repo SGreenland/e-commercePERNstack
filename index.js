@@ -262,7 +262,7 @@ app.post("/change_pw", authorization, async (req, res) => {
       res.send("success");
     }
   } catch (error) {
-    res.status(400).json(error.message);
+    res.status(400).json({ error: error.toString() });
   }
 });
 
