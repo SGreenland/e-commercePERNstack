@@ -122,9 +122,9 @@ const useStore = create((set, get) => ({
   itemPrices: products.map((product) => product.price),
   greyOut: () => {
     const root = document.getElementById("root");
-    const mainComponents = Array.from(root.children).filter(
-      (element) => element.id !== "alertBox"
-    );
+    const mainComponents = Array.from(
+      document.getElementsByTagName("div")
+    ).filter((element) => element.id !== "alertBox");
 
     mainComponents.forEach((comp) => {
       if (comp.style.zIndex !== "-1") {

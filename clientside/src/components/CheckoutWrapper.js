@@ -21,7 +21,8 @@ export default function CheckoutWrapper(props) {
 
   useEffect(() => {
     setValidUser();
-  }, []);
+    return () => setValidUser();
+  }, [setValidUser]);
 
   function getTotal() {
     if (cartItems.length) {

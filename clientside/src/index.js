@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login, { Homepage, CreateNewUser } from "./App";
 import Cart from "./components/Cart";
 import CheckoutWrapper from "./components/CheckoutWrapper";
-import CheckoutForm from "./components/CheckoutForm";
 import AccInfo from "./components/AccInfo";
 import OrdersPage from "./components/OrdersPage";
 
