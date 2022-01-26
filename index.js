@@ -260,9 +260,11 @@ app.post("/change_pw", authorization, async (req, res) => {
         [newhashedPw, userId]
       );
       res.send("success");
+    } else {
+      res.status(400).send("Old password not recognised!");
     }
   } catch (error) {
-    res.status(400).json({ error: error.toString() });
+    console.log(error.message);
   }
 });
 
